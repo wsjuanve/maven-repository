@@ -4,14 +4,6 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.example</groupId>
-  <artifactId>maven-repository</artifactId>
-  <version>1.0-SNAPSHOT</version>
-
-  <name>maven-repository</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
-
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
@@ -56,83 +48,100 @@
         </plugin>
 
 
-        <!--该插件识别java代码 否则自己在Project Structure设置-->
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <encoding>UTF-8</encoding>
-            <source>${java.version}</source>
-            <target>${java.version}</target>
-          </configuration>
-          <groupId>org.apache.maven.plugins</groupId>
-          <version>3.7.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <groupId>org.springframework.boot</groupId>
-        </plugin>
+        <!--        &lt;!&ndash;该插件识别java代码 否则自己在Project Structure设置&ndash;&gt;-->
+        <!--        <plugin>-->
+        <!--          <artifactId>maven-compiler-plugin</artifactId>-->
+        <!--          <configuration>-->
+        <!--            <encoding>UTF-8</encoding>-->
+        <!--            <source>${java.version}</source>-->
+        <!--            <target>${java.version}</target>-->
+        <!--          </configuration>-->
+        <!--          <groupId>org.apache.maven.plugins</groupId>-->
+        <!--          <version>3.7.0</version>-->
+        <!--        </plugin>-->
+        <!--        <plugin>-->
+        <!--          <artifactId>spring-boot-maven-plugin</artifactId>-->
+        <!--          <groupId>org.springframework.boot</groupId>-->
+        <!--        </plugin>-->
 
-        <!-- 要将源码放上去，需要加入这个插件 -->
-        <plugin>
-          <artifactId>maven-source-plugin</artifactId>
-          <configuration>
-            <attach>true</attach>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-              <phase>compile</phase>
-            </execution>
-          </executions>
-          <version>3.0.0</version>
-        </plugin>
+        <!--        &lt;!&ndash; 要将源码放上去，需要加入这个插件 &ndash;&gt;-->
+        <!--        <plugin>-->
+        <!--          <artifactId>maven-source-plugin</artifactId>-->
+        <!--          <configuration>-->
+        <!--            <attach>true</attach>-->
+        <!--          </configuration>-->
+        <!--          <executions>-->
+        <!--            <execution>-->
+        <!--              <goals>-->
+        <!--                <goal>jar</goal>-->
+        <!--              </goals>-->
+        <!--              <phase>compile</phase>-->
+        <!--            </execution>-->
+        <!--          </executions>-->
+        <!--          <version>3.0.0</version>-->
+        <!--        </plugin>-->
 
-        <!--参考  https://www.jianshu.com/p/98a141701cc7-->
-        <!--Error creating blob: Git Repository is empty. (409)   仓库里随便创建下文件-->
-
-
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <configuration>
-            <altDeploymentRepository>
-              internal.repo::default::file://${project.build.directory}/maven-repository
-            </altDeploymentRepository>
-          </configuration>
-          <version>2.8.1</version>
-        </plugin>
+        <!--        &lt;!&ndash;参考  https://www.jianshu.com/p/98a141701cc7&ndash;&gt;-->
+        <!--        &lt;!&ndash;Error creating blob: Git Repository is empty. (409)   仓库里随便创建下文件&ndash;&gt;-->
 
 
-        <plugin>
-          <artifactId>site-maven-plugin</artifactId>
-          <configuration>
-            <branch>refs/heads/main</branch>
-            <includes>
-              <include>**/*</include>
-            </includes>
-            <merge>true</merge><!--本地jar地址-->
-            <message>Maven artifacts for ${project.version}</message><!--分支-->
-            <noJekyll>true</noJekyll>
-            <outputDirectory>${project.build.directory}/maven-repository</outputDirectory>
-            <repositoryName>maven-repository</repositoryName><!--对应github上创建的仓库名称 name-->
-            <repositoryOwner>wsjuanve</repositoryOwner><!--github 仓库所有者-->
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>site</goal>
-              </goals>
-              <phase>deploy</phase>
-            </execution>
-          </executions>
-          <groupId>com.github.github</groupId>
-          <version>0.12</version>
-        </plugin>
+        <!--        <plugin>-->
+        <!--          <artifactId>maven-deploy-plugin</artifactId>-->
+        <!--          <configuration>-->
+        <!--            <altDeploymentRepository>-->
+        <!--              internal.repo::default::file://${project.build.directory}/maven-repository-->
+        <!--            </altDeploymentRepository>-->
+        <!--          </configuration>-->
+        <!--          <version>2.8.1</version>-->
+        <!--        </plugin>-->
+
+
+        <!--        <plugin>-->
+        <!--          <artifactId>site-maven-plugin</artifactId>-->
+        <!--          <configuration>-->
+        <!--            <branch>refs/heads/main</branch>-->
+        <!--            <includes>-->
+        <!--              <include>**/*</include>-->
+        <!--            </includes>-->
+        <!--            <merge>true</merge>&lt;!&ndash;本地jar地址&ndash;&gt;-->
+        <!--            <message>Maven artifacts for ${project.version}</message>&lt;!&ndash;分支&ndash;&gt;-->
+        <!--            <noJekyll>true</noJekyll>-->
+        <!--            <outputDirectory>${project.build.directory}/maven-repository</outputDirectory>-->
+        <!--            <repositoryName>maven-repository</repositoryName>&lt;!&ndash;对应github上创建的仓库名称 name&ndash;&gt;-->
+        <!--            <repositoryOwner>wsjuanve</repositoryOwner>&lt;!&ndash;github 仓库所有者&ndash;&gt;-->
+        <!--          </configuration>-->
+        <!--          <executions>-->
+        <!--            <execution>-->
+        <!--              <goals>-->
+        <!--                <goal>site</goal>-->
+        <!--              </goals>-->
+        <!--              <phase>deploy</phase>-->
+        <!--            </execution>-->
+        <!--          </executions>-->
+        <!--          <groupId>com.github.github</groupId>-->
+        <!--          <version>0.12</version>-->
+        <!--        </plugin>-->
 
       </plugins>
     </pluginManagement>
   </build>
+  <artifactId>maven-repository</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>maven-repository</name>
+
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <!--OWNER替换为 github的用户名或你所属组织的名称；REPOSITORY替换为项目名称-->
+      <url>https://maven.pkg.github.com/wsjuanve/maven-repository</url>
+    </repository>
+  </distributionManagement>
+
+
+  <groupId>com.github.wsjuanve</groupId>
 
 
   <dependencies>
